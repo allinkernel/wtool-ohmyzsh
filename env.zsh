@@ -1,15 +1,22 @@
+# 迁移自 mytool/zsh/oh-my-zsh/wsw.zsh（原 wsw-ohmyzsh）。
+#
+# 本项目现在是 wtool 的独立项目：由 ~/.zshrc 里的 wtool 块 source，
+# priority=10，所以在所有项目里最先加载（主题/补全先就位）。
+# 原来的 `export ZSH=$(get_this_dir)` 改为加载器导出的稳定地址。
+[[ -n "$WTOOL_PROJECT_DIR" ]] || WTOOL_PROJECT_DIR="$HOME/.wtool/links/shell/oh-my-zsh"
+export ZSH="$WTOOL_PROJECT_DIR"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
-export ZSH=$(get_this_dir)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="ys"
-ZSH_THEME="strug"
+#ZSH_THEME="strug"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load

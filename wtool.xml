@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  迁移自 mytool/zsh/oh-my-zsh（原 wsw-ohmyzsh，oh-my-zsh 的个人 fork）。
+
+  priority=10：所有项目里最先加载，保证主题/补全在其它配置之前就位。
+  env 文件是 env.zsh（由原 wsw.zsh 改名而来），它导出 ZSH 并 source
+  $ZSH/oh-my-zsh.sh。
+
+  本目录里 oh-my-zsh 自带的 README.md 保持原样；迁移说明见 WTOOL.md。
+-->
+<wtool schema="1" id="shell/oh-my-zsh" priority="10">
+
+  <env src="env.zsh" shells="zsh"/>
+
+</wtool>
