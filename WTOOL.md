@@ -38,3 +38,23 @@
 - 本仓库体积约 11MB（oh-my-zsh 上游内容），其中 `cache/`、`log/`、`custom/` 被
   上游 `.gitignore` 忽略（只保留 `.gitkeep` / example 文件）。
 - 升级 oh-my-zsh 需要与上游 rebase/merge，属于后续单独处理的事项。
+
+## 关于 compaudit 的 "Insecure completion-dependent directories" 警告
+
+如果你看到这样的横幅：
+
+```
+[oh-my-zsh] Insecure completion-dependent directories detected:
+drwxrwxr-x ... /path/to/oh-my-zsh/custom
+```
+
+这是 oh-my-zsh 自带的安全检查，意思是 `$ZSH/custom`（或其中某些目录）
+**属主不是当前用户，或者 group/other 有写权限**。
+
+| 场景 | 说明 |
+|---|---|
+| 正常使用（你自己 clone 的仓库） | 一般不会出现，`custom/` 属主就是你 |
+| **在 docker 容器里以 root 访问宿主目录** | 必然出现（属主是宿主用户，不是 root）——这是容器现象，不是配置问题 |
+| 真出现了 | 按提示执行 `compaudit \| xargs chmod g-w,o-w`，或设 `ZSH_DISABLE_COMPFIX=true` |
+
+本项目**没有**替你设 `ZSH_DISABLE_COMPFIX`：那会把一个真实的安全提醒永久静音。
