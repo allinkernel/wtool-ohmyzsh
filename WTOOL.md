@@ -30,7 +30,7 @@
 ## 关于 `~/.oh-my-zsh`
 
 原来的用法是在 `~/.zshrc` 里设 `ZSH=~/.oh-my-zsh`。现在 `ZSH` 指向
-`$HOME/.wtool/links/shell/oh-my-zsh`（引擎自动创建的中转链接），
+`$HOME/.wtool/wtool-work-dir/links/shell/oh-my-zsh`（引擎自动创建的中转链接），
 **不再需要 `~/.oh-my-zsh` 这个目录**。`custom/`、`cache/`、`log/` 都在本项目内。
 
 ## 注意

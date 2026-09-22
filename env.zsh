@@ -3,7 +3,7 @@
 # 本项目现在是 wtool 的独立项目：由 ~/.zshrc 里的 wtool 块 source，
 # priority=10，所以在所有项目里最先加载（主题/补全先就位）。
 # 原来的 `export ZSH=$(get_this_dir)` 改为加载器导出的稳定地址。
-[[ -n "$WTOOL_PROJECT_DIR" ]] || WTOOL_PROJECT_DIR="$HOME/.wtool/links/shell/oh-my-zsh"
+[[ -n "$WTOOL_PROJECT_DIR" ]] || WTOOL_PROJECT_DIR="$HOME/.wtool/wtool-work-dir/links/shell/oh-my-zsh"
 export ZSH="$WTOOL_PROJECT_DIR"
 
 # If you come from bash you might have to change your $PATH.
