@@ -3,25 +3,25 @@
 本目录是 **oh-my-zsh 的个人 fork**（原 `mytool/zsh/oh-my-zsh`，远端 `wsw-ohmyzsh`），
 现在作为 wtool 的独立项目：由 `~/.zshrc` 里的 wtool 块 source。
 
-> 目录里的 `README.md` 是 oh-my-zsh 自带的，未改动；迁移说明就是本文件。
+> 目录里的 `README.md` 是项目给用户的说明书：**「本项目说明（wtool 分支）」那一节**写了
+> 这个 fork 提供什么、怎么加载、配置项、快捷键、排错和测试 —— 要看功能说明看它。
+> 本文件只留迁移过程和注意事项。
 
-## 安装
+## 安装与卸载
 
-```sh
-./install.sh      # 建中转链接 + 往 ~/.zshrc 写块（priority=10，最先加载）
-./uninstall.sh    # 完全回退
-```
+**都由 wtool 管**：见 [wtool 的 README（GitHub：allinkernel/wtool）](https://github.com/allinkernel/wtool/blob/main/README.md)。
 
-> 首次（尚未 `git init`）需 `--force`；提交后不需要。
+这里以前写的是 `./install.sh` / `./uninstall.sh` 两条命令 —— 那两个脚本是 bootstrap 时代的存根，
+**已经不在本仓库里了**（安装强依赖 wtool，用不着它们），所以这段说明一并去掉。
 
 ## 与 mytool 版本的差异
 
 | 原 mytool | 现在 | 原因 |
 |---|---|---|
 | `wsw.zsh` 里 `export ZSH=$(get_this_dir)` | `env.zsh` 里 `export ZSH="$WTOOL_PROJECT_DIR"` | 路径由加载器提供，脚本不再自己猜 |
-| 文件名叫 `wsw.zsh` | 改名为 `env.zsh`（框架约定，便于识别） | `<env src="env.zsh">` 指向它 |
+| 文件名叫 `wsw.zsh` | 改名为 `env.zsh`（框架约定，便于识别） | `wtool.xml` 里的 `<zshrc src="env.zsh"/>` 指向它 |
 | 由 `wsw-zshrc/wsw_env.sh` 里的 `source ${cur_dir}/oh-my-zsh/wsw.zsh` 间接触发 | 自己就是一个 wtool 项目，有独立块 | 拆开 `shell/zsh` 与 `shell/oh-my-zsh`，两者只靠 priority 排序，无代码耦合 |
-| 无 `wtool.xml` | 有 `wtool.xml`（1 个 env） | 成为框架里的正式项目 |
+| 无 `wtool.xml` | 有 `wtool.xml`（1 个 `<zshrc>`） | 成为框架里的正式项目 |
 
 **迁移时携带的未提交修改**：`wsw.zsh` 在迁移前有一处工作区改动
 （`ZSH_THEME="strug"` 被注释掉，实际用 `ys`）。该改动已随迁移带入 `env.zsh`，
