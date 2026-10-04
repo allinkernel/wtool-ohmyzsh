@@ -10,6 +10,6 @@
 -->
 <wtool schema="1" id="shell/oh-my-zsh" priority="10">
 
-  <env src="env.zsh" shells="zsh"/>
+  <zshrc src="env.zsh"/>
 
 </wtool>
