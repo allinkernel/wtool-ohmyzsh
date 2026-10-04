@@ -8,7 +8,7 @@
 
   本目录里 oh-my-zsh 自带的 README.md 保持原样；迁移说明见 WTOOL.md。
 -->
-<wtool schema="1" id="shell/oh-my-zsh" priority="10">
+<wtool schema="1" priority="10">
 
   <zshrc src="env.zsh"/>
 
