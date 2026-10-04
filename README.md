@@ -73,7 +73,7 @@ To learn more, visit [ohmyz.sh](https://ohmyz.sh), follow [@ohmyzsh](https://x.c
 | `correction.zsh` | `ENABLE_CORRECTION=true` 时给 `cp` / `man` / `mkdir` 等加 `nocorrect` |
 | `diagnostics.zsh` | 5 个诊断函数（`omz_diagnostic_dump` 等） |
 | `directories.zsh` | 目录相关的 `setopt`（`auto_cd` / `auto_pushd` / `pushd_ignore_dups`）+ 别名（见下面） |
-| `functions.zsh` | 通用函数（13 个）：`zsh_stats`、`take`、`takeurl`、`takegit`、`mkcd`、`open_command`、`uninstall_oh_my_zsh`、`upgrade_oh_my_zsh`、`alias_value`、`env_default`、`omz_urlencode` / `omz_urldecode` … |
+| `functions.zsh` | 通用函数（**15 个名字**，都对着文件列过）：`zsh_stats`、`uninstall_oh_my_zsh`、`upgrade_oh_my_zsh`、`open_command`、`mkcd` / `takedir`（同一行定义的两个名字）、`takeurl`、`takegit`、`take`、`alias_value`、`try_alias_value`、`default`、`env_default`、`omz_urlencode`、`omz_urldecode` |
 | `git.zsh` | prompt 用的 git 信息函数：`git_prompt_info` / `git_prompt_status`、`parse_git_dirty`、`git_current_branch`、`git_current_user_name`、`git_commits_ahead` / `git_commits_behind` … |
 | `grep.zsh` | 给 `grep` 上色（结果缓存到 `$ZSH_CACHE_DIR/grep-alias`） |
 | `history.zsh` | 历史相关设置 + `omz_history` |
@@ -151,7 +151,8 @@ omz theme set <theme>        # 改 ~/.zshrc 里的 ZSH_THEME（见「排错」�
 ### 8. 更新机制（上游的）
 
 `tools/check_for_upgrade.sh` 在每次启动时按 `zstyle ':omz:update' …` 决定要不要检查更新，
-默认**每 2 周**提示一次；`mode` 可选 `auto` / `reminder` / `disabled`，
+默认**每 13 天**提示一次（`zstyle -s ':omz:update' frequency epoch_target || epoch_target=${UPDATE_ZSH_DAYS:-13}`，
+也就是常说的"约两周"）；`mode` 可选 `auto` / `reminder` / `disabled`，
 `frequency` 改间隔天数，`verbose` 改提示详细程度，`omz update` 手动更新。
 
 > ⚠️ 这套更新脚本是**上游**的：它默认 checkout `master` 分支再 `git pull --rebase`
@@ -164,7 +165,12 @@ omz theme set <theme>        # 改 ~/.zshrc 里的 ZSH_THEME（见「排错」�
 ## 安装（由 wtool 统一管）
 
 安装由 wtool 统一管：见 [wtool 的 README（GitHub：allinkernel/wtool）](https://github.com/allinkernel/wtool/blob/main/README.md) ——
-本仓库只是源码/配置，装的时候是 `wtool install shell/oh-my-zsh`（项目 id 就是它在清单里的 path）。
+本仓库只是源码/配置，装的时候是 `wtool install shell/oh-my-zsh`（**项目路径就是它的身份** ——
+没有单独的 id，见 ADR-0037）。
+
+> ⚠️ **wtool 的项目只在容器里装 / 测**（用户级规矩，2026-10-04）：本机（WSL）是临时
+> 的手工环境，wtool 彻底调通之前**不在本地落地**。要在容器里验证就 `--network=host`
+> 挂工作区；**真机上装本项目必须由用户明确同意**，助手不得自行 `wtool install`。
 
 ## 配置项
 
@@ -204,7 +210,7 @@ omz theme set <theme>        # 改 ~/.zshrc 里的 ZSH_THEME（见「排错」�
 | `Esc-w` | `kill-region` |
 | `Esc-l` | 直接执行 `ls`（宏绑定） |
 | `Ctrl-R` | `history-incremental-search-backward`（增量搜历史） |
-| `空格` | `magic-space`：**不做**历史展开 |
+| `空格` | `magic-space`：**做**历史展开 —— 比如敲了 `!!` 再按空格，当场就展开成上一条命令，然后插入一个空格。⚠️ `lib/key-bindings.zsh` 里那行注释 `# [Space] - don't do history expansion` 是**上游写反了**（2026-10-04 订正，判据：`man zshzle` → `magic-space  Perform history expansion and insert a space into the buffer.`）。**别照着注释把这条改回去** |
 | `Ctrl-X Ctrl-E` | 用 `$EDITOR` 编辑当前命令行 |
 | `Esc-m` | `copy-prev-shell-word` |
 
@@ -237,6 +243,13 @@ omz theme set <theme>        # 改 ~/.zshrc 里的 ZSH_THEME（见「排错」�
 ./plugins/*/_*
 ./themes/*.zsh-theme
 ```
+
+> ⚠️ 两个事实（2026-10-04 核对）：
+> ① 上面这份 glob **逐字来自** `.github/workflows/main.yml` 的 “Check syntax” 那一步
+> （另外它只在 `github.repository == 'ohmyzsh/ohmyzsh'` 时才跑 —— fork 上不跑）；
+> ② 这个 workflow 的触发分支写的是 **`master`**（`on.push.branches: [master]`），
+> 而本 fork 的真源分支是 `main` —— 所以在我们的 fork 上**这条 CI 根本不会触发**，
+> 语法检查只能自己在本地跑（就是下面这段）。
 
 本地等价命令（改完 `env.zsh` / `oh-my-zsh.sh` / 任何 lib、plugin、theme 之后至少跑一遍）：
 

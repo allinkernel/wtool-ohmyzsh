@@ -54,6 +54,16 @@
   别把本地定制提交进去。
 - `WTOOL.md` 是迁移记录，不是用户手册；改安装口径时它也要跟着改（它以前写着
   `./install.sh` / `./uninstall.sh`，那两个脚本已经不在仓库里了）。
+- **装 / 测只在容器里做**：本机（WSL）是临时的手工环境，wtool 调通之前不在本地落地；
+  真机上 `wtool install shell/oh-my-zsh` **必须由用户明确同意**（用户级 `~/.dsh/AGENTS.md`）。
+- ⚠️ **别信 `lib/key-bindings.zsh` 里那条注释**：`bindkey ' ' magic-space` 后面写着
+  `# [Space] - don't do history expansion`，**说反了** —— `man zshzle` 原文是
+  `magic-space  Perform history expansion and insert a space into the buffer.`
+  README 里已经按手册订正（2026-10-04）；那是**上游文件**，别为了这句注释去改它。
+- **数字宁可不写。** 目录数（插件 337 / 主题 143 / lib 21）可以数，但**函数/别名个数**
+  会被同一声明里的多个名字、`function a b()`、`function x {` 这类写法骗到
+  （`lib/functions.zsh` 就被写成过 13，实际是 15 个名字 / 14 条声明）。
+  写"有哪些"比写"有几个"安全。
 
 ## 3. 验证（改完必须做）
 
