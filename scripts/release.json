@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "project": "shell/oh-my-zsh",
+  "repo": "allinkernel/wtool-ohmyzsh",
+  "tag": "ds_dev-2026-10-07",
+  "base_url": "https://github.com/allinkernel/wtool-ohmyzsh/releases/download/ds_dev-2026-10-07",
+  "commit": "ff0b02def5ad5e159d40e1281fbcfe8c7e5dbe63",
+  "packed_at": "2026-10-08T01:05:05+0800",
+  "published_at": "2026-10-08T01:07:09+08:00",
+  "wtool_engine": "1.0.0",
+  "dirty": false,
+  "volume_size": "32M",
+  "declare": [
+    "wtool.xml",
+    "env.zsh"
+  ],
+  "targets": [],
+  "assets": [
+    {
+      "name": "dist.json",
+      "role": "",
+      "bytes": 910,
+      "sha256": "ef33c59e85d1405a3790a5cd8ca962abfb54f98b7b4a4616a74c639deeb5e2a2"
+    },
+    {
+      "name": "release-hash.txt",
+      "role": "",
+      "bytes": 78,
+      "sha256": "804fd098b1d212e256bcfc5fd4c63ad9df1980961cbf96f3fdd1760b8a4055aa"
+    },
+    {
+      "name": "release.zip",
+      "role": "release",
+      "bytes": 2784,
+      "sha256": "fda0b7a4078222f010e5fcfd70305307dcda057a4fd5ea1eec3bf383902464af"
+    },
+    {
+      "name": "源码-hash.txt",
+      "role": "",
+      "bytes": 77,
+      "sha256": "8850ab6cf98cd1de009cf47a2c2124462c1743d1694d38c494dd3e57ffcfb8e2"
+    },
+    {
+      "name": "源码.zip",
+      "role": "source",
+      "bytes": 3491768,
+      "sha256": "ad909514f306af5248b536ddd6b5b72b15314e228077ff61a44c7519810c5034"
+    }
+  ],
+  "how": "wtool download-release shell/oh-my-zsh   # 下到项目的 __release/（按本文件的 sha256 校验）\nwtool unpack-release shell/oh-my-zsh     # 拼分卷 + 解到 __output/\nwtool install shell/oh-my-zsh            # 装到本机"
+}
