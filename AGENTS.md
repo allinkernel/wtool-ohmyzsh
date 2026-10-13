@@ -19,7 +19,7 @@
   （`ZSH_THEME` / `plugins` / `ZSH` / 注释开关）、加载顺序、`omz` 子命令、
   lib 文件的作用、快捷键、更新机制，都要回到对应表格/条目改。
 - **README 里不写"怎么装"** —— 安装统一由 wtool 管，只有一句话 + 指向 GitHub 上
-  wtool README（`allinkernel/wtool` 仓库的 `README.md`）的链接。
+  wtool README（`allinkernel/wtool-doc` 仓库的 `README.md`）的链接。
   **上游那几节安装/卸载说明（`tools/install.sh`、`--unattended`、
   `git clone ~/.oh-my-zsh`、`uninstall_oh_my_zsh`）不许加回来** —— 它们是给
   "直接安装 oh-my-zsh"的用户的，本项目由 wtool 装、由 wtool 撤。

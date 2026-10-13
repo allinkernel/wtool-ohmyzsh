@@ -164,7 +164,7 @@ omz theme set <theme>        # 改 ~/.zshrc 里的 ZSH_THEME（见「排错」�
 
 ## 安装（由 wtool 统一管）
 
-安装由 wtool 统一管：见 [wtool 的 README（GitHub：allinkernel/wtool）](https://github.com/allinkernel/wtool/blob/main/README.md) ——
+安装由 wtool 统一管：见 [wtool 的 README（GitHub：allinkernel/wtool-doc）](https://github.com/allinkernel/wtool-doc/blob/main/README.md) ——
 本仓库只是源码/配置，装的时候是 `wtool install shell/oh-my-zsh`（**项目路径就是它的身份** ——
 没有单独的 id，见 ADR-0037）。
 
@@ -327,7 +327,7 @@ zsh -ic 'WTOOL_PROJECT_DIR=$PWD; source env.zsh;
 
 > **这一节已按 wtool 的口径改写。** 上游那种"下载并运行 `tools/install.sh`"的安装方式
 > 在本 fork 里**不再使用**：安装统一由 wtool 管 ——
-> 见 [wtool 的 README（GitHub：allinkernel/wtool）](https://github.com/allinkernel/wtool/blob/main/README.md)。
+> 见 [wtool 的 README（GitHub：allinkernel/wtool-doc）](https://github.com/allinkernel/wtool-doc/blob/main/README.md)。
 > 本仓库只是源码/配置；也就不存在"把 install.sh 先下下来看一眼再跑"这一步了
 > （想审查 wtool 做什么，看它的仓库；项目的 `install.sh` / `uninstall.sh` 已经退休）。
 
@@ -576,7 +576,7 @@ Magic! 🎉
 ## Uninstalling Oh My Zsh
 
 > **这一节已按 wtool 的口径改写。** 卸载同样由 wtool 管
-> （见 [wtool 的 README](https://github.com/allinkernel/wtool/blob/main/README.md)；
+> （见 [wtool 的 README](https://github.com/allinkernel/wtool-doc/blob/main/README.md)；
 > 对应的命令是 `wtool uninstall shell/oh-my-zsh`）。
 >
 > 上游自带的 `uninstall_oh_my_zsh`（`lib/functions.zsh` 里那个函数，会去跑

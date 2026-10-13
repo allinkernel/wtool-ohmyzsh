@@ -9,7 +9,7 @@
 
 ## 安装与卸载
 
-**都由 wtool 管**：见 [wtool 的 README（GitHub：allinkernel/wtool）](https://github.com/allinkernel/wtool/blob/main/README.md)。
+**都由 wtool 管**：见 [wtool 的 README（GitHub：allinkernel/wtool-doc）](https://github.com/allinkernel/wtool-doc/blob/main/README.md)。
 
 这里以前写的是 `./install.sh` / `./uninstall.sh` 两条命令 —— 那两个脚本是 bootstrap 时代的存根，
 **已经不在本仓库里了**（安装强依赖 wtool，用不着它们），所以这段说明一并去掉。
