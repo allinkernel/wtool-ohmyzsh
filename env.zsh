@@ -82,6 +82,21 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# ── 提示符归属：omz 的主题算出来的就是**用户要的那个**（2026-10-22 用户口径）──
+#
+# 背景：`$WTOOL_HOME/env.zsh` 是按 priority 升序 source 的，本项目 priority=10
+# （最早），而 `tools/musl-bins/starship` 是 60 —— starship 的 `init zsh` 会**直接
+# 改写 PROMPT / RPROMPT**（`PROMPT='$(starship prompt …)'`），排在我们后面就把
+# `ZSH_THEME=ys` 的主题盖掉了。VM 实测：`zsh` 起来看到的是 starship 的提示符，
+# 不是 omz 的。
+#
+# 不改加载顺序（会把 fzf 的 ^R、补全那些顺序也一起翻掉），而是：
+#   这里把主题算出来的那两个**存一份**，由 `$WTOOL_HOME/env.zsh` 在**所有**项目
+#   加载完之后再贴回去（那个收尾块只认这两个变量，没装 omz 时是 no-op）。
+# 变量名用 WTOOL_ 前缀，避免和用户自己的变量撞；不 export（只给同一个 shell 用）。
+WTOOL_OMZ_PROMPT="$PROMPT"
+WTOOL_OMZ_RPROMPT="${RPROMPT:-}"
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

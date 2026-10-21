@@ -176,6 +176,14 @@ omz theme set <theme>        # 改 ~/.zshrc 里的 ZSH_THEME（见「排错」�
 
 `env.zsh` 里**真正设了的**只有三个：`ZSH="$WTOOL_PROJECT_DIR"`、`ZSH_THEME="ys"`、
 `plugins=(git)`，外加一行 `WTOOL_PROJECT_DIR` 的兜底默认值。
+
+> **提示符归属（2026-10-22）**：source 完 `oh-my-zsh.sh` 之后，`env.zsh` 会把主题算出来的
+> `PROMPT` / `RPROMPT` 存进 `WTOOL_OMZ_PROMPT` / `WTOOL_OMZ_RPROMPT`。原因是
+> `tools/musl-bins/starship`（wtool 里 priority 60）的 `init zsh` 会**直接改写**
+> `PROMPT`，排在 oh-my-zsh（priority 10）后面就把 `ZSH_THEME=ys` 的主题盖掉（VM 实测）。
+> `$WTOOL_HOME/env.zsh` 的**收尾块**会在所有项目加载完之后把这两个变量贴回去 ——
+> 所以**装了 omz 就一定看到 omz 的提示符**，星星（starship）只保留它自己的功能。
+> 没装 omz 时那两个变量不存在，收尾块是 no-op。
 下面这些里，**除了 `ZSH_CACHE_DIR`**（它是 `oh-my-zsh.sh` 自己设的，没写在模板里）
 都在 `env.zsh` 里以注释形式列着，取消注释即可生效：
 
