@@ -35,8 +35,8 @@
       "sha256": "77399377894e82ccb7c1b7d49b4fa2489a54ac2b4a7f1613a9f337932b4da314"
     }
   ],
-  "how": "wtool download-release shell/oh-my-zsh   # 下到项目的 __release/（按本文件的 sha256 校验）\nwtool unpack-release shell/oh-my-zsh     # 拼分卷 + 把源码铺回项目目录\nwtool install shell/oh-my-zsh            # 装到本机\n\n# 断网机（没有 wtool，也不联网）：从离线 tag offline-2026-10-14 的发布页人工下载\nunzip source-offline.zip && cp -a wtool/. \"$WTOOL_HOME/wtool/\"   # ① 源码即产物\nwtool install shell/oh-my-zsh            # 东西都在包里，不联网",
-  "offlineTag": "offline-2026-10-14",
+  "how": "wtool download-release shell/oh-my-zsh   # 下到项目的 __release/（按本文件的 sha256 校验）\nwtool unpack-release shell/oh-my-zsh     # 拼分卷 + 把源码铺回项目目录\nwtool install shell/oh-my-zsh            # 装到本机\n\n# 断网机（没有 wtool，也不联网）：从离线 tag offline-2026-10-21 的发布页人工下载\nunzip source-offline.zip && cp -a wtool/. \"$WTOOL_HOME/wtool/\"   # ① 源码即产物\nwtool install shell/oh-my-zsh            # 东西都在包里，不联网",
+  "offlineTag": "offline-2026-10-21",
   "artifacts": {
     "source-offline.zip": [
       {
